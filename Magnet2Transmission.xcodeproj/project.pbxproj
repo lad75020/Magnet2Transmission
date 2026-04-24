@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 100;
 	objects = {
 
 /* Begin PBXFileReference section */
@@ -21,10 +21,8 @@
 /* Begin PBXFrameworksBuildPhase section */
 		4D82401D2F9BD43400AAC8B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -58,14 +56,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				4D8240222F9BD43400AAC8B5 /* Magnet2Transmission */,
 			);
 			name = Magnet2Transmission;
-			packageProductDependencies = (
-			);
 			productName = Magnet2Transmission;
 			productReference = 4D8240202F9BD43400AAC8B5 /* Magnet2Transmission.app */;
 			productType = "com.apple.product-type.application";
@@ -94,7 +88,7 @@
 			);
 			mainGroup = 4D8240172F9BD43400AAC8B5;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = 4D8240212F9BD43400AAC8B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -107,25 +101,21 @@
 /* Begin PBXResourcesBuildPhase section */
 		4D82401E2F9BD43400AAC8B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D82401C2F9BD43400AAC8B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		4D82402B2F9BD43500AAC8B5 /* Debug */ = {
+		4D82402B2F9BD43500AAC8B5 /* Debug configuration for PBXProject "Magnet2Transmission" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +179,7 @@
 			};
 			name = Debug;
 		};
-		4D82402C2F9BD43500AAC8B5 /* Release */ = {
+		4D82402C2F9BD43500AAC8B5 /* Release configuration for PBXProject "Magnet2Transmission" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -245,20 +235,24 @@
 			};
 			name = Release;
 		};
-		4D82402E2F9BD43500AAC8B5 /* Debug */ = {
+		4D82402E2F9BD43500AAC8B5 /* Debug configuration for PBXNativeTarget "Magnet2Transmission" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RJYVGK9S3F;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Magnet2Transmission;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -277,20 +271,24 @@
 			};
 			name = Debug;
 		};
-		4D82402F2F9BD43500AAC8B5 /* Release */ = {
+		4D82402F2F9BD43500AAC8B5 /* Release configuration for PBXNativeTarget "Magnet2Transmission" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RJYVGK9S3F;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Magnet2Transmission;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -315,19 +313,17 @@
 		4D82401B2F9BD43400AAC8B5 /* Build configuration list for PBXProject "Magnet2Transmission" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D82402B2F9BD43500AAC8B5 /* Debug */,
-				4D82402C2F9BD43500AAC8B5 /* Release */,
+				4D82402B2F9BD43500AAC8B5 /* Debug configuration for PBXProject "Magnet2Transmission" */,
+				4D82402C2F9BD43500AAC8B5 /* Release configuration for PBXProject "Magnet2Transmission" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		4D82402D2F9BD43500AAC8B5 /* Build configuration list for PBXNativeTarget "Magnet2Transmission" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D82402E2F9BD43500AAC8B5 /* Debug */,
-				4D82402F2F9BD43500AAC8B5 /* Release */,
+				4D82402E2F9BD43500AAC8B5 /* Debug configuration for PBXNativeTarget "Magnet2Transmission" */,
+				4D82402F2F9BD43500AAC8B5 /* Release configuration for PBXNativeTarget "Magnet2Transmission" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

@@ -5,55 +5,147 @@
 //  Created by Laurent Dubertrand on 24/04/2026.
 //
 
+import AppKit
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @ObservedObject var appModel: AppModel
+    @AppStorage("transmissionHost") private var host = ""
+    @AppStorage("transmissionPort") private var port = 9091
+    @AppStorage("transmissionUsername") private var username = ""
+    @AppStorage("transmissionPassword") private var password = ""
+    @State private var draftMagnetLink = ""
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Magnet2Transmission")
+                .font(.headline)
+
+            GroupBox("Transmission") {
+                VStack(alignment: .leading, spacing: 12) {
+                    TextField("Host or URL", text: $host, prompt: Text("localhost"))
+                        .textFieldStyle(.roundedBorder)
+
+                    HStack(spacing: 12) {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Port")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+
+                            TextField("9091", value: $port, format: .number)
+                                .textFieldStyle(.roundedBorder)
+                        }
+
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Username")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+
+                            TextField("Optional", text: $username)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                    }
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Password")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        SecureField("Optional", text: $password)
+                            .textFieldStyle(.roundedBorder)
                     }
                 }
-                .onDelete(perform: deleteItems)
             }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+
+            GroupBox("Manual Send") {
+                VStack(alignment: .leading, spacing: 12) {
+                    TextField("magnet://… or magnet:?xt=…", text: $draftMagnetLink, axis: .vertical)
+                        .textFieldStyle(.roundedBorder)
+                        .lineLimit(2...4)
+
+                    Button("Send Magnet Link") {
+                        submitDraftMagnetLink()
                     }
+                    .disabled(draftMagnetLink.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
-        } detail: {
-            Text("Select an item")
+
+            GroupBox("Status") {
+                VStack(alignment: .leading, spacing: 8) {
+                    LabeledContent("Magnet Handler") {
+                        Text(appModel.currentMagnetHandlerName)
+                            .multilineTextAlignment(.trailing)
+                            .foregroundStyle(appModel.isDefaultMagnetHandler ? .green : .primary)
+                    }
+
+                    LabeledContent("Last Link") {
+                        Text(appModel.lastMagnetLink ?? "None")
+                            .lineLimit(3)
+                            .multilineTextAlignment(.trailing)
+                            .foregroundStyle(appModel.lastMagnetLink == nil ? .secondary : .primary)
+                    }
+
+                    LabeledContent("Last Update") {
+                        Text(appModel.statusMessage)
+                            .multilineTextAlignment(.trailing)
+                            .foregroundStyle(statusColor)
+                    }
+                }
+                .font(.caption)
+            }
+
+            Button(appModel.isClaimingMagnetHandler ? "Claiming Magnet Links..." : "Reclaim Magnet Links") {
+                Task {
+                    await appModel.claimMagnetHandler()
+                }
+            }
+            .disabled(appModel.isClaimingMagnetHandler)
+
+            Divider()
+
+            HStack {
+                Button("Open Web UI") {
+                    appModel.openTransmissionWebInterface()
+                }
+
+                Spacer()
+
+                Button("Quit") {
+                    NSApplication.shared.terminate(nil)
+                }
+                .keyboardShortcut("q")
+            }
+        }
+        .padding(16)
+        .frame(width: 380)
+        .task {
+            appModel.refreshMagnetHandlerStatus()
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+    private var statusColor: Color {
+        switch appModel.statusLevel {
+        case .idle:
+            return .secondary
+        case .success:
+            return .green
+        case .failure:
+            return .red
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+    private func submitDraftMagnetLink() {
+        let magnetLink = draftMagnetLink.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !magnetLink.isEmpty else {
+            return
+        }
+
+        Task {
+            await appModel.handleIncomingMagnetLink(magnetLink)
         }
     }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    ContentView(appModel: AppModel.shared)
 }
