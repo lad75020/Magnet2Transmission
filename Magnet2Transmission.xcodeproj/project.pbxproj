@@ -6,13 +6,46 @@
 	objectVersion = 100;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4D8A17D42F9D39E20094AD07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D8A17CD2F9D39E20094AD07 /* Assets.xcassets */; };
+		4D8A17D52F9D39E20094AD07 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A17CC2F9D39E20094AD07 /* AppModel.swift */; };
+		4D8A17D62F9D39E20094AD07 /* TransmissionRPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A17D12F9D39E20094AD07 /* TransmissionRPCClient.swift */; };
+		4D8A17D72F9D39E20094AD07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A17CE2F9D39E20094AD07 /* ContentView.swift */; };
+		4D8A17D82F9D39E20094AD07 /* M2TransiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A17D02F9D39E20094AD07 /* M2TransiOSApp.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4D8240202F9BD43400AAC8B5 /* Magnet2Transmission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magnet2Transmission.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D8240402F9BD60000AAC8B5 /* M2TransiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M2TransiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D8A17CC2F9D39E20094AD07 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		4D8A17CD2F9D39E20094AD07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4D8A17CE2F9D39E20094AD07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4D8A17CF2F9D39E20094AD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D8A17D02F9D39E20094AD07 /* M2TransiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M2TransiOSApp.swift; sourceTree = "<group>"; };
+		4D8A17D12F9D39E20094AD07 /* TransmissionRPCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmissionRPCClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4D8A17D92F9D3A920094AD07 /* Exceptions for "Magnet2Transmission" folder in "M2TransiOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppModel.swift,
+				Assets.xcassets,
+				ContentView.swift,
+				Item.swift,
+				Magnet2TransmissionApp.swift,
+				TransmissionRPCClient.swift,
+			);
+			target = 4D8240452F9BD60000AAC8B5 /* M2TransiOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4D8240222F9BD43400AAC8B5 /* Magnet2Transmission */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4D8A17D92F9D3A920094AD07 /* Exceptions for "Magnet2Transmission" folder in "M2TransiOS" target */,
+			);
 			path = Magnet2Transmission;
 			sourceTree = "<group>";
 		};
@@ -24,12 +57,18 @@
 			files = (
 			);
 		};
+		4D8240432F9BD60000AAC8B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		4D8240172F9BD43400AAC8B5 = {
 			isa = PBXGroup;
 			children = (
+				4D8A17D22F9D39E20094AD07 /* M2TransiOS */,
 				4D8240222F9BD43400AAC8B5 /* Magnet2Transmission */,
 				4D8240212F9BD43400AAC8B5 /* Products */,
 			);
@@ -39,8 +78,22 @@
 			isa = PBXGroup;
 			children = (
 				4D8240202F9BD43400AAC8B5 /* Magnet2Transmission.app */,
+				4D8240402F9BD60000AAC8B5 /* M2TransiOS.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		4D8A17D22F9D39E20094AD07 /* M2TransiOS */ = {
+			isa = PBXGroup;
+			children = (
+				4D8A17CC2F9D39E20094AD07 /* AppModel.swift */,
+				4D8A17CD2F9D39E20094AD07 /* Assets.xcassets */,
+				4D8A17CE2F9D39E20094AD07 /* ContentView.swift */,
+				4D8A17CF2F9D39E20094AD07 /* Info.plist */,
+				4D8A17D02F9D39E20094AD07 /* M2TransiOSApp.swift */,
+				4D8A17D12F9D39E20094AD07 /* TransmissionRPCClient.swift */,
+			);
+			path = M2TransiOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -64,6 +117,24 @@
 			productReference = 4D8240202F9BD43400AAC8B5 /* Magnet2Transmission.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4D8240452F9BD60000AAC8B5 /* M2TransiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D8240462F9BD60000AAC8B5 /* Build configuration list for PBXNativeTarget "M2TransiOS" */;
+			buildPhases = (
+				4D8240422F9BD60000AAC8B5 /* Sources */,
+				4D8240432F9BD60000AAC8B5 /* Frameworks */,
+				4D8240442F9BD60000AAC8B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				4D8240222F9BD43400AAC8B5 /* Magnet2Transmission */,
+			);
+			name = M2TransiOS;
+			productName = M2TransiOS;
+			productReference = 4D8240402F9BD60000AAC8B5 /* M2TransiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -75,6 +146,9 @@
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					4D82401F2F9BD43400AAC8B5 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+					4D8240452F9BD60000AAC8B5 = {
 						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
@@ -94,6 +168,7 @@
 			projectRoot = "";
 			targets = (
 				4D82401F2F9BD43400AAC8B5 /* Magnet2Transmission */,
+				4D8240452F9BD60000AAC8B5 /* M2TransiOS */,
 			);
 		};
 /* End PBXProject section */
@@ -104,12 +179,27 @@
 			files = (
 			);
 		};
+		4D8240442F9BD60000AAC8B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				4D8A17D42F9D39E20094AD07 /* Assets.xcassets in Resources */,
+			);
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D82401C2F9BD43400AAC8B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+			);
+		};
+		4D8240422F9BD60000AAC8B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				4D8A17D52F9D39E20094AD07 /* AppModel.swift in Sources */,
+				4D8A17D62F9D39E20094AD07 /* TransmissionRPCClient.swift in Sources */,
+				4D8A17D72F9D39E20094AD07 /* ContentView.swift in Sources */,
+				4D8A17D82F9D39E20094AD07 /* M2TransiOSApp.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
@@ -307,6 +397,88 @@
 			};
 			name = Release;
 		};
+		4D8240472F9BD60000AAC8B5 /* Debug configuration for PBXNativeTarget "M2TransiOS" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RJYVGK9S3F;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = M2TransiOS;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.dubertrand.M2TransiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4D8240482F9BD60000AAC8B5 /* Release configuration for PBXNativeTarget "M2TransiOS" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RJYVGK9S3F;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = M2TransiOS;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.dubertrand.M2TransiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +495,14 @@
 			buildConfigurations = (
 				4D82402E2F9BD43500AAC8B5 /* Debug configuration for PBXNativeTarget "Magnet2Transmission" */,
 				4D82402F2F9BD43500AAC8B5 /* Release configuration for PBXNativeTarget "Magnet2Transmission" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		4D8240462F9BD60000AAC8B5 /* Build configuration list for PBXNativeTarget "M2TransiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D8240472F9BD60000AAC8B5 /* Debug configuration for PBXNativeTarget "M2TransiOS" */,
+				4D8240482F9BD60000AAC8B5 /* Release configuration for PBXNativeTarget "M2TransiOS" */,
 			);
 			defaultConfigurationName = Release;
 		};
