@@ -142,7 +142,17 @@ private struct TransmissionAddPayload: Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case torrentAdded = "torrent_added"
+        case torrentAddedLegacy = "torrent-added"
         case torrentDuplicate = "torrent_duplicate"
+        case torrentDuplicateLegacy = "torrent-duplicate"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        torrentAdded = try container.decodeIfPresent(TransmissionTorrent.self, forKey: .torrentAdded)
+            ?? container.decodeIfPresent(TransmissionTorrent.self, forKey: .torrentAddedLegacy)
+        torrentDuplicate = try container.decodeIfPresent(TransmissionTorrent.self, forKey: .torrentDuplicate)
+            ?? container.decodeIfPresent(TransmissionTorrent.self, forKey: .torrentDuplicateLegacy)
     }
 }
 
