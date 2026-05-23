@@ -105,6 +105,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
+        Task { @MainActor in
+            AppModel.shared.appendTrace("application(_:openFile:) path=\(filename)")
+        }
+
+        handleIncomingFilePath(filename)
+        return true
+    }
+
+    func application(_ sender: NSApplication, openFiles filenames: [String]) {
+        Task { @MainActor in
+            AppModel.shared.appendTrace("application(_:openFiles:) count=\(filenames.count)")
+        }
+
+        for filename in filenames {
+            handleIncomingFilePath(filename)
+        }
+
+        sender.reply(toOpenOrPrint: .success)
+    }
+
     @objc private func handleGetURLEvent(_ event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
         guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue else {
             Task { @MainActor in
@@ -122,6 +143,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func handleLaunchArguments() {
         let arguments = ProcessInfo.processInfo.arguments.dropFirst()
         let magnetArguments = arguments.filter { $0.lowercased().hasPrefix("\(AppModel.magnetScheme):") }
+        let torrentFileArguments = arguments.filter { argument in
+            if argument.lowercased().hasPrefix("file:") {
+                return URL(string: argument)?.pathExtension.caseInsensitiveCompare("torrent") == .orderedSame
+            }
+
+            return URL(fileURLWithPath: argument).pathExtension.caseInsensitiveCompare("torrent") == .orderedSame
+        }
 
         Task { @MainActor in
             if magnetArguments.isEmpty {
@@ -136,6 +164,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 AppModel.shared.appendTrace("Magnet link found in launch arguments")
                 await AppModel.shared.handleIncomingURLString(argument)
             }
+        }
+
+        for argument in torrentFileArguments {
+            Task {
+                AppModel.shared.appendTrace("Torrent file found in launch arguments")
+            }
+            handleIncomingFilePath(argument)
         }
     }
 
@@ -160,8 +195,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue {
             Task {
                 AppModel.shared.appendTrace("\(context): handling currentAppleEvent payload")
-                await AppModel.shared.handleIncomingURLString(urlString)
+                if urlString.lowercased().hasPrefix("\(AppModel.magnetScheme):") {
+                    await AppModel.shared.handleIncomingURLString(urlString)
+                } else {
+                    await AppModel.shared.handleIncomingURL(URL(fileURLWithPath: urlString))
+                }
             }
+        }
+    }
+
+    private func handleIncomingFilePath(_ path: String) {
+        let url: URL
+        if path.lowercased().hasPrefix("file:"), let fileURL = URL(string: path) {
+            url = fileURL
+        } else {
+            url = URL(fileURLWithPath: path)
+        }
+
+        Task {
+            await AppModel.shared.handleIncomingURL(url)
         }
     }
 }
